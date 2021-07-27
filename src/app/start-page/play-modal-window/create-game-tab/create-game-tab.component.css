@@ -1,0 +1,18 @@
+.tab-header {
+  text-align: center;
+}
+
+.name-field {
+  margin: 0 auto;
+  display: block;
+  width: 50%;
+}
+
+.button {
+  display: block;
+  margin: 0 auto;
+}
+
+.tab {
+  margin-bottom: 10px;
+}

@@ -1,0 +1,12 @@
+<div class="start-page">
+  <h1 class="page-header">Catch a wave!</h1>
+  <h3 class="page-description">Play with your friends!</h3>
+  <div class="form-control">
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input matInput
+      [formControl]="usernameField">
+    </mat-form-field>
+    <button mat-raised-button class="button" [disabled]="!usernameField.valid" (click)="ChooseGame()">Play</button>
+  </div>
+</div>

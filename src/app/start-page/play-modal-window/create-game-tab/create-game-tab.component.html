@@ -1,0 +1,9 @@
+<div class="tab">
+  <h1 class="tab-header">Enter room's name</h1>
+  <mat-form-field appearance="outline" class="name-field">
+    <mat-label>Name</mat-label>
+    <input matInput
+           [formControl]="roomNameField">
+  </mat-form-field>
+  <button mat-raised-button class="button" (click)="CreateGame()">Create</button>
+</div>
