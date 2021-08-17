@@ -104,5 +104,10 @@
       }
     }
   },
-  "defaultProject": "CatchWaveClient"
+  "defaultProject": "CatchWaveClient",
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "less"
+    }
+  }
 }

@@ -7,7 +7,7 @@ import {UsersService} from "../services/users.service";
 @Component({
   selector: "start-page",
   templateUrl: "start-page.component.html",
-  styleUrls: ["start-page.component.css"]
+  styleUrls: ["start-page.component.less"]
 })
 export class StartPageComponent {
   usernameField = new FormControl('', [Validators.required, Validators.minLength(4)]);

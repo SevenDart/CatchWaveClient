@@ -4,7 +4,7 @@ import {MatDialogRef} from "@angular/material/dialog";
 @Component({
   selector: "play-modal-window",
   templateUrl: "play-modal-window.component.html",
-  styleUrls: ["play-modal-window.component.css"]
+  styleUrls: ["play-modal-window.component.less"]
 })
 export class PlayModalWindowComponent {
 

@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
 @Component({
   selector: 'enter-game-tab',
   templateUrl: 'enter-game-tab.component.html',
-  styleUrls: ['enter-game-tab.component.css']
+  styleUrls: ['enter-game-tab.component.less']
 })
 export class EnterGameTabComponent {
   roomIdField = new FormControl('', [Validators.pattern('[0-9]+')]);

@@ -7,7 +7,7 @@ import {UsersService} from "../services/users.service";
 @Component({
   selector: "room-page",
   templateUrl: "room-page.component.html",
-  styleUrls: ["room-page.component.css"]
+  styleUrls: ["room-page.component.less"]
 })
 export class RoomPageComponent {
   room: RoomModel | undefined;
