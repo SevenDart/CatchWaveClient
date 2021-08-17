@@ -16,6 +16,7 @@
 
 .form-control {
   margin: 100px auto;
+  width: 100%;
 }
 
 .button {
@@ -23,4 +24,10 @@
   margin: 0 auto;
   font-size: 24px;
   padding: 5px 20px;
+}
+
+.user-field {
+  width: 30%;
+  margin: 0 auto;
+  display: block;
 }

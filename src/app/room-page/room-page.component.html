@@ -1,0 +1,14 @@
+<div class="page-container">
+  <h1 *ngIf="room" class="room-name">{{room.name}}</h1>
+  <h2 *ngIf="room" class="room-id">ID: {{room.id}}</h2>
+  <div class="players-list" *ngIf="room">
+    <h2 class="header">Players:</h2>
+    <div class="player" *ngFor="let player of room.users">
+      <i class="fas fa-user"></i>
+      <p class="username">{{player.username}}</p>
+    </div>
+  </div>
+  <ng-container *ngIf="room && isOwner">
+    <button mat-raised-button class="button">Start game</button>
+  </ng-container>
+</div>

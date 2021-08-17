@@ -1,10 +1,10 @@
 <div mat-dialog-content>
   <mat-tab-group dynamicHeight mat-align-tabs="center">
     <mat-tab label="Create game">
-      <create-game-tab></create-game-tab>
+      <create-game-tab (closeRequest)="closeWindow()"></create-game-tab>
     </mat-tab>
     <mat-tab label="Enter game">
-      <enter-game-tab></enter-game-tab>
+      <enter-game-tab (closeRequest)="closeWindow()"></enter-game-tab>
     </mat-tab>
   </mat-tab-group>
 </div>

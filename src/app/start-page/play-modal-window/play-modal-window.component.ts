@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: "play-modal-window",
@@ -6,5 +7,13 @@ import {Component} from "@angular/core";
   styleUrls: ["play-modal-window.component.css"]
 })
 export class PlayModalWindowComponent {
+
+  constructor(private matDialogRef: MatDialogRef<PlayModalWindowComponent>) {
+  }
+
+
+  closeWindow() {
+    this.matDialogRef.close();
+  }
 
 }

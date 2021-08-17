@@ -1,25 +1,30 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgModule} from '@angular/core';
+import {HttpClientModule} from "@angular/common/http";
+import {RouterModule, Routes} from "@angular/router";
+import {ReactiveFormsModule} from "@angular/forms";
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatTabsModule} from "@angular/material/tabs";
-
-import { AppComponent } from './app.component';
-import {StartPageComponent} from "./start-page/start-page.component";
-import {PlayModalWindowComponent} from "./start-page/play-modal-window/play-modal-window.component";
-import {EnterGameTabComponent} from "./start-page/play-modal-window/enter-game-tab/enter-game-tab.component";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
-import {CreateGameTabComponent} from "./start-page/play-modal-window/create-game-tab/create-game-tab.component";
-import {RouterModule, Routes} from "@angular/router";
-import {ReactiveFormsModule} from "@angular/forms";
+
 import {UsersService} from "./services/users.service";
-import {HttpClientModule} from "@angular/common/http";
-import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {RoomsService} from "./services/rooms.service";
+
+import {AppComponent} from './app.component';
+import {StartPageComponent} from "./start-page/start-page.component";
+import {PlayModalWindowComponent} from "./start-page/play-modal-window/play-modal-window.component";
+import {EnterGameTabComponent} from "./start-page/play-modal-window/enter-game-tab/enter-game-tab.component";
+import {CreateGameTabComponent} from "./start-page/play-modal-window/create-game-tab/create-game-tab.component";
+import {RoomPageComponent} from "./room-page/room-page.component";
 
 const routes: Routes = [
   {path: 'start', component: StartPageComponent},
+  {path: 'room/:roomId', component: RoomPageComponent},
   {path: '', pathMatch: 'full', redirectTo: 'start'}
 ];
 
@@ -29,7 +34,8 @@ const routes: Routes = [
     StartPageComponent,
     PlayModalWindowComponent,
     EnterGameTabComponent,
-    CreateGameTabComponent
+    CreateGameTabComponent,
+    RoomPageComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +50,7 @@ const routes: Routes = [
     HttpClientModule,
     MatSnackBarModule
   ],
-  providers: [UsersService],
+  providers: [UsersService, RoomsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

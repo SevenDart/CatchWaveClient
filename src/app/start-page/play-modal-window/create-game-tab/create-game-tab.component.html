@@ -5,5 +5,5 @@
     <input matInput
            [formControl]="roomNameField">
   </mat-form-field>
-  <button mat-raised-button class="button" (click)="CreateGame()">Create</button>
+  <button mat-raised-button class="button" [disabled]="!roomNameField.valid" (click)="CreateGame()">Create</button>
 </div>

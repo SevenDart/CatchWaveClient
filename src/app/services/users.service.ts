@@ -3,42 +3,41 @@ import {UserModel} from "../models/user.model";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {throwError} from "rxjs";
 import {catchError} from "rxjs/operators";
+import {ServiceTools} from "./serviceTools";
+import jwtDecode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  static authedUser: UserModel;
-  static token: string;
+  private static _authedUser: UserModel;
 
-  constructor(private http: HttpClient) {
+  static get authedUser(): UserModel {
+    let token = this.token;
+    if (token !== null && !this._authedUser) {
+      let decoded : any = jwtDecode(token);
+      this._authedUser = {
+        id: Number(decoded.Id),
+        username: decoded.Username
+      };
+    }
+    return this._authedUser;
   }
 
-  ErrorHandlerFactory(messageSwitcher: (error: HttpErrorResponse) => string | null, snackBar: MatSnackBar) {
-    return ((error: HttpErrorResponse) => {
-      const message: string | null = messageSwitcher(error);
-      if (message !== null) {
-        const bar = snackBar.open(message, 'Close');
-        bar._dismissAfter(3 * 1000);
-        if (!environment.production) {
-          return throwError(error);
-        }
-        return throwError(message);
-      }
-      else {
-        const bar = snackBar.open('Server is down.', 'Close');
-        bar._dismissAfter(3 * 1000);
-        if (!environment.production) {
-          return throwError(error);
-        }
-        return throwError('Server is down.');
-      }
-    });
+
+  static set authedUser(authedUser: UserModel) {
+    this._authedUser = authedUser;
   }
 
-  Login(username: string, errorHandlerSnackBar: MatSnackBar) {
+  static get token() {
+    return localStorage.getItem('token');
+  }
+
+  constructor(private http: HttpClient, private snackBar: MatSnackBar) {
+  }
+
+  Login(username: string) {
     const messageSwitcher = (error: HttpErrorResponse) => {
       switch (error.status) {
         case 500:
@@ -46,16 +45,9 @@ export class UsersService {
       }
       return null;
     };
-    const errorHandler = this.ErrorHandlerFactory(messageSwitcher, errorHandlerSnackBar);
 
-    const obs = this.http.put(environment.serverAddress + '/users/token', {username: username}).pipe(catchError(errorHandler));
+    const errorHandler = ServiceTools.ErrorHandlerFactory(messageSwitcher, this.snackBar);
 
-    obs.subscribe(
-      (data: any) => {
-        UsersService.authedUser = data.authedUser;
-        UsersService.token = data.token;
-      });
-
-    return obs;
+    return this.http.put(environment.serverAddress + '/users/token', {username: username}).pipe(catchError(errorHandler));
   }
 }

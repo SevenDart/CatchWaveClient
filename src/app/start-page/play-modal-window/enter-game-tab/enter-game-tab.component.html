@@ -1,6 +1,9 @@
-<h1 class="tab-header">Enter id of game</h1>
-<mat-form-field>
-  <mat-label>ID</mat-label>
-  <input matInput>
-</mat-form-field>
-<button mat-raised-button>Enter</button>
+<div class="tab">
+  <h1 class="tab-header">Enter id of game</h1>
+  <mat-form-field appearance="outline" class="id-field">
+    <mat-label>ID</mat-label>
+    <input matInput
+           [formControl]="roomIdField">
+  </mat-form-field>
+  <button mat-raised-button class="button" (click)="EnterGame()" [disabled]="!roomIdField.valid">Enter</button>
+</div>

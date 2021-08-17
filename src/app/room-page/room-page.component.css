@@ -1,0 +1,42 @@
+.page-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.room-name {
+  display: block;
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.room-id {
+  display: block;
+  font-size: 30px;
+  text-align: center;
+}
+
+.players-list {
+  margin: 0 auto;
+}
+
+.players-list .header {
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+}
+
+.player {
+  font-size: 20px;
+  margin: 0 20px;
+}
+
+.username {
+  margin: 0 5px;
+  display: inline;
+}
+
+.button {
+  margin: 20px auto 0;
+}
